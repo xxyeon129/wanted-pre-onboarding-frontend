@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
     // 이메일, 비밀번호, 버튼 상태
@@ -8,6 +10,12 @@ export default function Signup() {
     // 유효성 검사 관련 상태
     const [validationEmail, setValidationEmail] = useState(false);
     const [validationPW, setValidationPW] = useState(false);
+
+    // API
+    const url = "https://www.pre-onboarding-selection-task.shop";
+
+    // 페이지 이동
+    const navigate = useNavigate();
 
     // 이메일 입력
     const handleInputEmail = (event) => {
@@ -36,9 +44,21 @@ export default function Signup() {
         }
     }, [email, password]);
 
-    // 버튼 클릭
+    // 회원가입
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        const userData = { email, password };
+
+        axios
+            .post(`${url}/auth/signup`, userData)
+            .then((res) => {
+                alert(
+                    "회원가입에 성공하셨습니다.\n로그인 페이지로 이동합니다."
+                );
+                navigate("/signin");
+            })
+            .catch((error) => alert(error.response.data.message));
     };
 
     return (
