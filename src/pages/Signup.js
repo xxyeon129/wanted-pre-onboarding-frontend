@@ -64,7 +64,7 @@ export default function Signup() {
                 </div>
                 <button
                     data-testid="signup-button"
-                    onClick={handleSubmit}
+                    type="submit"
                     disabled={!(validationEmail && validationPW)}
                 >
                     회원가입
