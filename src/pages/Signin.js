@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Signin() {
     // 이메일, 비밀번호
@@ -8,6 +9,9 @@ export default function Signin() {
     // 유효성 검사 관련 상태
     const [validationEmail, setValidationEmail] = useState(false);
     const [validationPW, setValidationPW] = useState(false);
+
+    // API
+    const url = "https://www.pre-onboarding-selection-task.shop";
 
     // 이메일 입력
     const handleInputEmail = (event) => {
@@ -39,6 +43,15 @@ export default function Signin() {
     // 로그인
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        const loginData = { email, password };
+
+        axios
+            .post(`${url}/auth/signin`, loginData)
+            .then((res) => {
+                localStorage.setItem("loginToken", res.data.access_token);
+            })
+            .catch((error) => alert(error.response.data.message));
     };
 
     return (
