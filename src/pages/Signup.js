@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Signup() {
     // 이메일, 비밀번호, 버튼 상태
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [btnDisabled, setBtnDisabled] = useState(true);
+
+    // 유효성 검사 관련 상태
+    const [validationEmail, setValidationEmail] = useState(false);
+    const [validationPW, setValidationPW] = useState(false);
 
     // 이메일 입력
     const handleInputEmail = (event) => {
@@ -17,6 +20,21 @@ export default function Signup() {
         const inputPassword = event.target.value;
         setPassword(inputPassword);
     };
+
+    // 유효성 검사에 따른 버튼 disabled 조건 변경
+    useEffect(() => {
+        if (email.includes("@")) {
+            setValidationEmail(true);
+        } else {
+            setValidationEmail(false);
+        }
+
+        if (password.length >= 8) {
+            setValidationPW(true);
+        } else {
+            setValidationPW(false);
+        }
+    }, [email, password]);
 
     // 버튼 클릭
     const handleSubmit = (event) => {
@@ -47,7 +65,7 @@ export default function Signup() {
                 <button
                     data-testid="signup-button"
                     onClick={handleSubmit}
-                    disabled={btnDisabled}
+                    disabled={!(validationEmail && validationPW)}
                 >
                     회원가입
                 </button>
