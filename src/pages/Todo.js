@@ -1,13 +1,23 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TodoItem from "../components/TodoItem";
 
 export default function Todo() {
     const [inputTodo, setInputTodo] = useState("");
+    const [todoList, setTodoList] = useState([]);
 
     // API
     const url = "https://www.pre-onboarding-selection-task.shop";
     // access token
     const access_token = localStorage.getItem("loginToken");
+
+    const renderTodo = () => {
+        axios
+            .get(`${url}/todos`, {
+                headers: { Authorization: `Bearer ${access_token}` },
+            })
+            .then((res) => setTodoList(res.data));
+    };
 
     const createTodo = (event) => {
         event.preventDefault();
@@ -27,6 +37,10 @@ export default function Todo() {
             .catch((error) => alert(error.response.data.message));
     };
 
+    useEffect(() => {
+        renderTodo();
+    });
+
     return (
         <div>
             Add Todo
@@ -41,14 +55,11 @@ export default function Todo() {
                     추가
                 </button>
             </form>
-            <li>
-                <label>
-                    <input type="checkbox" />
-                    <span>TODO 1</span>
-                </label>
-                <button data-testid="modify-button">수정</button>
-                <button data-testid="delete-button">삭제</button>
-            </li>
+            <ul>
+                {todoList.map((todo) => (
+                    <TodoItem key={todo.id} todo={todo} />
+                ))}
+            </ul>
         </div>
     );
 }
