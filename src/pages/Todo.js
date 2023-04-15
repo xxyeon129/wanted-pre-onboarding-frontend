@@ -11,7 +11,7 @@ export default function Todo() {
     // access token
     const access_token = localStorage.getItem("loginToken");
 
-    const renderTodo = () => {
+    const getTodo = () => {
         axios
             .get(`${url}/todos`, {
                 headers: { Authorization: `Bearer ${access_token}` },
@@ -38,7 +38,7 @@ export default function Todo() {
     };
 
     useEffect(() => {
-        renderTodo();
+        getTodo();
     });
 
     return (
