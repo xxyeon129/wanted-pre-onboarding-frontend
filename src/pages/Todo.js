@@ -37,9 +37,30 @@ export default function Todo() {
             .catch((error) => alert(error.response.data.message));
     };
 
+    const updateTodo = (id, updatedTodo, updatedCheck) => {
+        axios
+            .put(
+                `${url}/todos/${id}`,
+                { todo: updatedTodo, isCompleted: updatedCheck },
+                {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then((res) => {
+                const newTodoList = todoList.map((todo) =>
+                    todo.id === id ? res.data : todo
+                );
+                setTodoList(newTodoList);
+            })
+            .catch((error) => alert(error.response.data.message));
+    };
+
     useEffect(() => {
         getTodo();
-    });
+    }, []);
 
     return (
         <div>
@@ -57,7 +78,11 @@ export default function Todo() {
             </form>
             <ul>
                 {todoList.map((todo) => (
-                    <TodoItem key={todo.id} todo={todo} />
+                    <TodoItem
+                        key={todo.id}
+                        todo={todo}
+                        updateTodo={updateTodo}
+                    />
                 ))}
             </ul>
         </div>
