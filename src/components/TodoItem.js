@@ -42,7 +42,10 @@ export default function TodoItem({ todo, updateTodo }) {
                         <input
                             type="checkbox"
                             checked={editCheck}
-                            onChange={() => setEditCheck(!editCheck)}
+                            onChange={() => {
+                                setEditCheck(!editCheck);
+                                updateTodo(todo.id, editTodo, !editCheck);
+                            }}
                         />
                         <span>{todo.todo}</span>
                     </label>
