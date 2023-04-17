@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-// page
+// pages
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Todo from "./pages/Todo";

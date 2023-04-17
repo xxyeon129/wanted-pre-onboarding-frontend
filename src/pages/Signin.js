@@ -43,7 +43,6 @@ export default function Signin() {
 
         try {
             const res = await authAPI.signin(email, password);
-            console.log(res);
             localStorage.setItem("loginToken", res.data.access_token);
             alert("로그인에 성공하셨습니다.\nToDo List 페이지로 이동합니다.");
             window.location.reload();

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { authAPI } from "../API/ServerAPI";
 
 export default function Signup() {
-    // 이메일, 비밀번호, 버튼 상태
+    // 이메일, 비밀번호 상태
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 

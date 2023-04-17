@@ -7,7 +7,7 @@ export default function Todo() {
     const [inputTodo, setInputTodo] = useState("");
     const [todoList, setTodoList] = useState([]);
 
-    // To Do List 렌더링
+    // To Do List 표시
     const getTodo = async () => {
         try {
             const res = await TodoAPI.getTodo();
@@ -51,6 +51,7 @@ export default function Todo() {
         }
     };
 
+    // To Do List 렌더링 업데이트
     useEffect(() => {
         getTodo();
     }, [todoList]);
