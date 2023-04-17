@@ -1,10 +1,12 @@
 import { useState } from "react";
 
 export default function TodoItem({ todo, updateTodo, deleteTodo }) {
+    // 수정 모드 관련 상태
     const [editMode, setEditMode] = useState(false);
     const [editTodo, setEditTodo] = useState(todo.todo);
     const [editCheck, setEditCheck] = useState(todo.isCompleted);
 
+    // 수정 모드 제출 버튼 클릭 시 이벤트 (내용 업데이트, 수정모드 비활성화)
     const handleTodoSubmit = (event) => {
         event.preventDefault();
         updateTodo(todo.id, editTodo, editCheck);

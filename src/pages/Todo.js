@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import TodoItem from "../components/TodoItem";
 
 export default function Todo() {
+    // 입력 input, 입력한 To Do List 관련 상태
     const [inputTodo, setInputTodo] = useState("");
     const [todoList, setTodoList] = useState([]);
 
@@ -11,6 +12,7 @@ export default function Todo() {
     // access token
     const access_token = localStorage.getItem("loginToken");
 
+    // To Do List 렌더링
     const getTodo = () => {
         axios
             .get(`${url}/todos`, {
@@ -19,6 +21,7 @@ export default function Todo() {
             .then((res) => setTodoList(res.data));
     };
 
+    // To Do 추가
     const createTodo = (event) => {
         event.preventDefault();
 
@@ -37,6 +40,7 @@ export default function Todo() {
             .catch((error) => alert(error.response.data.message));
     };
 
+    // To Do 수정
     const updateTodo = (id, updatedTodo, updatedCheck) => {
         axios
             .put(
@@ -58,6 +62,7 @@ export default function Todo() {
             .catch((error) => alert(error.response.data.message));
     };
 
+    // To Do 삭제
     const deleteTodo = (id) => {
         axios
             .delete(`${url}/todos/${id}`, {
