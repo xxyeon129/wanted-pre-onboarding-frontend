@@ -58,6 +58,16 @@ export default function Todo() {
             .catch((error) => alert(error.response.data.message));
     };
 
+    const deleteTodo = (id) => {
+        axios
+            .delete(`${url}/todos/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                },
+            })
+            .catch((error) => alert(error.response.data.message));
+    };
+
     useEffect(() => {
         getTodo();
     }, []);
@@ -82,6 +92,7 @@ export default function Todo() {
                         key={todo.id}
                         todo={todo}
                         updateTodo={updateTodo}
+                        deleteTodo={deleteTodo}
                     />
                 ))}
             </ul>

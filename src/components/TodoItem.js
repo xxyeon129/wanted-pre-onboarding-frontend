@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function TodoItem({ todo, updateTodo }) {
+export default function TodoItem({ todo, updateTodo, deleteTodo }) {
     const [editMode, setEditMode] = useState(false);
     const [editTodo, setEditTodo] = useState(todo.todo);
     const [editCheck, setEditCheck] = useState(todo.isCompleted);
@@ -55,7 +55,12 @@ export default function TodoItem({ todo, updateTodo }) {
                     >
                         수정
                     </button>
-                    <button data-testid="delete-button">삭제</button>
+                    <button
+                        data-testid="delete-button"
+                        onClick={() => deleteTodo(todo.id)}
+                    >
+                        삭제
+                    </button>
                 </div>
             )}
         </li>
