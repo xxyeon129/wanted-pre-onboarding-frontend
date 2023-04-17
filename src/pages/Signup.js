@@ -12,7 +12,7 @@ export default function Signup() {
     const [validationPW, setValidationPW] = useState(false);
 
     // API
-    const url = "https://www.pre-onboarding-selection-task.shop";
+    const url = process.env.REACT_APP_SERVER_URL;
 
     // 페이지 이동
     const navigate = useNavigate();

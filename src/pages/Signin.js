@@ -11,7 +11,7 @@ export default function Signin() {
     const [validationPW, setValidationPW] = useState(false);
 
     // API
-    const url = "https://www.pre-onboarding-selection-task.shop";
+    const url = process.env.REACT_APP_SERVER_URL;
 
     // 이메일 입력
     const handleInputEmail = (event) => {

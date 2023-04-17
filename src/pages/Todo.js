@@ -8,7 +8,7 @@ export default function Todo() {
     const [todoList, setTodoList] = useState([]);
 
     // API
-    const url = "https://www.pre-onboarding-selection-task.shop";
+    const url = process.env.REACT_APP_SERVER_URL;
     // access token
     const access_token = localStorage.getItem("loginToken");
 
