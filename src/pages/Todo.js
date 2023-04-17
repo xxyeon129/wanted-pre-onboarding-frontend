@@ -70,7 +70,7 @@ export default function Todo() {
 
     useEffect(() => {
         getTodo();
-    }, []);
+    }, [todoList]);
 
     return (
         <div>
