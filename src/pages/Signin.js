@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { authAPI } from "../API/ServerAPI";
 
 export default function Signin() {
     // 이메일, 비밀번호
@@ -9,9 +9,6 @@ export default function Signin() {
     // 유효성 검사 관련 상태
     const [validationEmail, setValidationEmail] = useState(false);
     const [validationPW, setValidationPW] = useState(false);
-
-    // API
-    const url = process.env.REACT_APP_SERVER_URL;
 
     // 이메일 입력
     const handleInputEmail = (event) => {
@@ -41,21 +38,18 @@ export default function Signin() {
     }, [email, password]);
 
     // 로그인
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const loginData = { email, password };
-
-        axios
-            .post(`${url}/auth/signin`, loginData)
-            .then((res) => {
-                localStorage.setItem("loginToken", res.data.access_token);
-                alert(
-                    "로그인에 성공하셨습니다.\nToDo List 페이지로 이동합니다."
-                );
-                window.location.reload();
-            })
-            .catch((error) => alert(error.response.data.message));
+        try {
+            const res = await authAPI.signin(email, password);
+            console.log(res);
+            localStorage.setItem("loginToken", res.data.access_token);
+            alert("로그인에 성공하셨습니다.\nToDo List 페이지로 이동합니다.");
+            window.location.reload();
+        } catch (error) {
+            alert(error.response.data.message);
+        }
     };
 
     return (

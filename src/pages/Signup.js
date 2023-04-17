@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { authAPI } from "../API/ServerAPI";
 
 export default function Signup() {
     // 이메일, 비밀번호, 버튼 상태
@@ -10,9 +10,6 @@ export default function Signup() {
     // 유효성 검사 관련 상태
     const [validationEmail, setValidationEmail] = useState(false);
     const [validationPW, setValidationPW] = useState(false);
-
-    // API
-    const url = process.env.REACT_APP_SERVER_URL;
 
     // 페이지 이동
     const navigate = useNavigate();
@@ -45,20 +42,16 @@ export default function Signup() {
     }, [email, password]);
 
     // 회원가입
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const userData = { email, password };
-
-        axios
-            .post(`${url}/auth/signup`, userData)
-            .then((res) => {
-                alert(
-                    "회원가입에 성공하셨습니다.\n로그인 페이지로 이동합니다."
-                );
-                navigate("/signin");
-            })
-            .catch((error) => alert(error.response.data.message));
+        try {
+            await authAPI.signup(email, password);
+            alert("회원가입에 성공하셨습니다.\n로그인 페이지로 이동합니다.");
+            navigate("/signin");
+        } catch (error) {
+            alert(error.response.data.message);
+        }
     };
 
     return (
