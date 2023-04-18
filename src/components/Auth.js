@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Auth({
     email,
@@ -12,6 +12,9 @@ export default function Auth({
     const [validationEmail, setValidationEmail] = useState(false);
     const [validationPW, setValidationPW] = useState(false);
 
+    // 이메일 포커싱
+    const emailRef = useRef("");
+
     // 이메일 입력
     const handleInputEmail = (event) => {
         const inputEmail = event.target.value;
@@ -23,6 +26,11 @@ export default function Auth({
         const inputPassword = event.target.value;
         setPassword(inputPassword);
     };
+
+    // 렌더링 시 이메일 자동 포커싱
+    useEffect(() => {
+        emailRef.current.focus();
+    }, []);
 
     // 유효성 검사에 따른 버튼 disabled 조건 변경
     useEffect(() => {
@@ -47,6 +55,7 @@ export default function Auth({
                     <input
                         data-testid="email-input"
                         type="email"
+                        ref={emailRef}
                         placeholder="이메일을 입력해주세요."
                         onChange={handleInputEmail}
                     />
