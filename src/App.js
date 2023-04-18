@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-// page
+// pages
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Todo from "./pages/Todo";
@@ -28,6 +28,16 @@ export default function App() {
         <div>
             <Router>
                 <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            isLogin ? (
+                                <Navigate to="/todo" />
+                            ) : (
+                                <Navigate to="/signin" />
+                            )
+                        }
+                    />
                     <Route
                         path="/signin"
                         element={
