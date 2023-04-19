@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+p,
+blockquote,
+a,
+i,
+ul,
+li,
+form,
+label,
+caption,
+article,
+aside,
+footer,
+header,
+hgroup,
+nav,
+input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background: #dfe3f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    border: 0 none;
+    background: none;
+}

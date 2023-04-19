@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import styled from "styled-components";
 
 export default function Auth({
     email,
@@ -49,7 +50,7 @@ export default function Auth({
 
     return (
         <form onSubmit={submit}>
-            <div>
+            <AuthStyle>
                 <div id="email">
                     <label htmlFor="email">이메일</label>
                     <input
@@ -76,7 +77,56 @@ export default function Auth({
                 >
                     {btnText}
                 </button>
-            </div>
+            </AuthStyle>
         </form>
     );
 }
+
+const AuthStyle = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    color: #23315d;
+
+    #email,
+    #password {
+        margin-bottom: 1rem;
+
+        > label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        > input {
+            border: 2px solid #9ea9cc;
+            border-radius: 5px;
+            padding: 0.5rem;
+            width: 100%;
+
+            :focus {
+                border: 2px solid #3981f6;
+            }
+        }
+    }
+
+    button {
+        background-color: #3981f6;
+        color: white;
+        font-weight: bold;
+        padding: 0.7rem;
+        border-radius: 5px;
+        margin-top: 1rem;
+
+        :hover {
+            cursor: pointer;
+            transition: 0.5s;
+            background-color: #23315d;
+        }
+
+        :disabled {
+            cursor: not-allowed;
+            background-color: #9ea9cc;
+        }
+    }
+`;
