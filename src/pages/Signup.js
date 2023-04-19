@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authAPI } from "../API/ServerAPI";
 import Auth from "../components/Auth";
+import * as Style from "../components/style/TemplateStyle";
 
 export default function Signup() {
     // 이메일, 비밀번호 상태
@@ -25,13 +26,16 @@ export default function Signup() {
     };
 
     return (
-        <Auth
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            submit={handleSignupSubmit}
-            btnText={"회원가입"}
-        />
+        <Style.Wrapper>
+            <h1>Sign up</h1>
+            <Auth
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                submit={handleSignupSubmit}
+                btnText={"회원가입"}
+            />
+        </Style.Wrapper>
     );
 }
