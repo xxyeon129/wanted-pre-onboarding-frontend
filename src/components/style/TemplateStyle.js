@@ -14,9 +14,26 @@ export const Wrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
 
+    /* 타이틀 */
     h1 {
         color: #23315d;
         padding-top: 4rem;
         padding-bottom: 1rem;
+    }
+
+    /* 로그인 페이지 회원가입 안내 */
+    #signup {
+        margin-top: 3.2rem;
+        float: right;
+        color: #9ea9cc;
+        > a {
+            text-decoration: none;
+            color: #23315d;
+
+            :hover {
+                cursor: pointer;
+                color: #3981f6;
+            }
+        }
     }
 `;
