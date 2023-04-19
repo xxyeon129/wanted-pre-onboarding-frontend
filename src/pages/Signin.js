@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { authAPI } from "../API/ServerAPI";
 import Auth from "../components/Auth";
+import * as Style from "../components/style/TemplateStyle";
 
 export default function Signin() {
     // 이메일, 비밀번호 상태
@@ -22,13 +23,16 @@ export default function Signin() {
     };
 
     return (
-        <Auth
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            submit={handleSigninSubmit}
-            btnText={"로그인"}
-        />
+        <Style.Wrapper>
+            <h1>Login</h1>
+            <Auth
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                submit={handleSigninSubmit}
+                btnText={"로그인"}
+            />
+        </Style.Wrapper>
     );
 }
