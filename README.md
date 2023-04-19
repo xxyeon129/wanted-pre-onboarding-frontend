@@ -1,8 +1,8 @@
 # 원티드 프리온보딩 인턴십 프론트엔드 사전과제
-- **배포 링크 :** 
+- **배포 링크 :** http://wanted-pre-onboarding-frontend-yeon.s3-website.ap-northeast-2.amazonaws.com
 - **테스트 계정**
-  - email :
-  - password :
+  - email : testid@test.com
+  - password : 12345678
 # 프로젝트의 실행 방법
 ```
 git clone
