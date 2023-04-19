@@ -40,7 +40,10 @@ export default function TodoItem({ todo, updateTodo, deleteTodo }) {
                             </button>
                             <button
                                 data-testid="cancel-button"
-                                onClick={() => setEditMode(false)}
+                                onClick={() => {
+                                    setEditTodo(todo.todo);
+                                    setEditMode(false);
+                                }}
                             >
                                 취소
                             </button>
