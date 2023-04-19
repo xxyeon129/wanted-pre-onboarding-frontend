@@ -42,6 +42,7 @@ export default function TodoItem({ todo, updateTodo, deleteTodo }) {
                                 data-testid="cancel-button"
                                 onClick={() => {
                                     setEditTodo(todo.todo);
+                                    setEditCheck(todo.isCompleted);
                                     setEditMode(false);
                                 }}
                             >
