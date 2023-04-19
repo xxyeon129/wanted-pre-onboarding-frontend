@@ -70,13 +70,23 @@ export default function Auth({
                         onChange={handleInputPW}
                     />
                 </div>
-                <button
-                    data-testid="signup-button"
-                    type="submit"
-                    disabled={!(validationEmail && validationPW)}
-                >
-                    {btnText}
-                </button>
+                {btnText === "로그인" ? (
+                    <button
+                        data-testid="signin-button"
+                        type="submit"
+                        disabled={!(validationEmail && validationPW)}
+                    >
+                        {btnText}
+                    </button>
+                ) : (
+                    <button
+                        data-testid="signup-button"
+                        type="submit"
+                        disabled={!(validationEmail && validationPW)}
+                    >
+                        {btnText}
+                    </button>
+                )}
             </AuthStyle>
         </form>
     );

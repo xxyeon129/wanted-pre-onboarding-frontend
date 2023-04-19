@@ -2,6 +2,7 @@ import { useState } from "react";
 import { authAPI } from "../API/ServerAPI";
 import Auth from "../components/Auth";
 import * as Style from "../components/style/TemplateStyle";
+import { Link } from "react-router-dom";
 
 export default function Signin() {
     // 이메일, 비밀번호 상태
@@ -33,6 +34,9 @@ export default function Signin() {
                 submit={handleSigninSubmit}
                 btnText={"로그인"}
             />
+            <div id="signup">
+                회원이 아니신가요? <Link to="/signup">회원가입</Link>
+            </div>
         </Style.Wrapper>
     );
 }
